@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:helloworld/home/stories/storiesBar.dart';
+
+import './home/appbar/instagramTitle.dart';
+import './home/appbar/dmButton.dart';
+import './home/appbar/likeButton.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,34 +14,49 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       // Application name
-      title: 'Flutter Hello World',
+      title: 'Instagram',
       // Application theme data, you can set the colors for the application as
       // you want
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        backgroundColor: Colors.black,
       ),
       // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Instagram'),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
   final String title;
-  const MyHomePage({super.key, required this.title});  
+  const MyHomePage({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         // The title text which will be shown on the action bar
-        title: Text(title),
+        title: InstagramTitle(),
+        backgroundColor: Colors.black,
+        actions: [
+          Row(children: [
+            Container(
+              child: Row(children: [
+                LikeButton(),
+                DmButton(),
+              ]),
+            ),
+          ])
+        ],
       ),
       body: Center(
-        child: Text(
-          'Hello, World!',
-        ),
-      ),
+          child: Column(
+        children: [
+          StoriesBar(),
+          Container(),
+        ],
+      )),
     );
   }
 }
